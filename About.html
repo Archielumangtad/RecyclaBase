@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RecycleBase</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <link rel="shortcut icon" href="logo.png" type="image/png">
+
+  <style>
+   
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  color: white;
+  overflow-x: hidden;
+}
+
+
+header {
+  backdrop-filter: blur(5px); 
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  
+  color: white;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 75px;
+      width: 80px;
+  margin-right: 10px;
+}
+
+nav {
+  display: flex;
+  gap: 15px;
+}
+
+nav a {
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+nav a:hover {
+  color: white;
+  background: skyblue;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Burger Menu Styling */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.burger div {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+}
+
+/* Responsive Nav for Small Screens */
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    background-color: skyblue;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  nav.active {
+    display: flex;
+  }
+
+  .burger {
+    display: flex;
+  }
+}
+
+
+
+
+    section {
+  position: relative;
+  text-align: center;
+  color: white;
+  padding: 100px ;
+}
+
+.media-container {
+  position: relative;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+}
+
+
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  z-index: -3; /* Place behind the video */
+  background-image: url('background-fallback.jpg'); /* Path to fallback image */
+  background-size: cover;
+  background-position: center;
+}
+
+.content {
+  position: relative;
+  z-index: 1; /* Ensure text is above the video and image */
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for text readability */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.text-image {
+  margin-top: 20px;
+  max-width: 200px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  font-size: 0.8rem; /* Smaller font size */
+  text-align: center;
+}
+
+.content p {
+  font-size: 1rem; /* Slightly smaller text size for content paragraphs */
+  line-height: 1.4;
+}
+
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .content h2 {
+    font-size: 1.8rem;
+  }
+  .content p {
+    font-size: 1rem;
+  }
+  .text-image {
+    width: 100%;
+  }
+}
+     /* Background Video Styling */
+     .background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      object-fit: cover;
+    }
+
+.venture-team-section {
+            padding: 50px 20px;
+            text-align: center;
+            
+        }
+
+        .venture-team-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .venture-team-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .team-member {
+            background-color: #ffffff;
+            width: 250px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .team-member h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .team-member p {
+            font-size: 1rem;
+            color: #777;
+        }
+    .venture-team-container {
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .team-member {
+                width: 220px;
+            }
+
+            .venture-team-section h2 {
+                font-size: 2rem;
+            }
+        
+        @media (max-width: 768px) {
+            .venture-team-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .team-member {
+                width: 80%;
+                margin-bottom: 30px;
+            }
+
+            .venture-team-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .venture-team-section {
+                padding: 30px 10px;
+            }
+
+            .team-member {
+                width: 90%;
+            }
+
+            .venture-team-section h2 {
+                font-size: 1.6rem;
+            }
+            .section img{
+              width: 100px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+            
+        }
+        /* General Footer Styling */
+footer {
+  margin-top: 100px;
+  padding: 20px 0;
+
+}
+
+.footer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.social-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.social-links li {
+  position: relative;
+}
+
+.social-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 60px;
+  height: 60px;
+  background: white;
+  border-radius: 50%;
+  text-decoration: none;
+  color: #333;
+  font-size: 24px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: translateY(-10px);
+  
+  color: white;
+}
+
+.social-icon span {
+  position: absolute;
+  bottom: -30px;
+  background-color:black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  opacity: 0;
+  visibility: hidden;
+  white-space: nowrap;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.social-icon:hover span {
+  opacity: 1;
+  visibility: visible;
+}
+.fa-facebook-f{
+  color: rgb(45, 45, 223);
+}
+.fa-instagram{
+  color: orangered;
+}
+.fa-twitter{
+ color: skyblue;
+}
+.fa-github{
+  color: black;
+}
+.fa-youtube{
+  color: red;
+}
+
+@media (max-width: 768px) {
+  .social-links {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .social-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .social-icon span {
+    font-size: 10px;
+    bottom: -25px;
+  }
+}
+fieldset{
+  background-image: url(tao.webp);
+  margin-top: 100px;
+}
+        
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="AQUANOVA Logo">
+      <h1 class="brand-name">AQUANOVA</h1>
+    </div>
+    <div class="burger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <nav id="menu">
+      <a href="Home.html">Home</a>
+      <a href="About.html">About</a>
+      <a href="Features.html">Features</a>
+      <a href="Contact.html">Contact Us</a>
+    </nav>
+  </header>
+  
+      
+     
+  <section class="about-section">
+    <div class="media-container">
+        
+      </video>
+      <div class="background-image"></div>
+      
+      
+      <div class="content">
+        <h2>About</h2>
+        <p>The venture team pursues this business idea to help reduce waste in the blue economy while providing valuable rewards to participants. Marine debris is a huge problem, especially in our oceans, and this idea encourages people to collect and recycle plastic bottles by offering eco-friendly merchandise in return.
+        </p>
+        <img src="abt.webp" alt="RecyclaBase Overview" class="text-image">
+      </div>
+    </div>
+  </section>
+  
+  <section class="mission-section">
+    <div class="media-container">
+      <div class="background-image"></div>
+      <div class="content">
+        <h2>Our Mission</h2>
+        <p>RecyclaBase is driven by the vision of cleaner coastlines and sustainable communities. Through innovative waste management solutions, we tackle plastic pollution while empowering communities with the technology they need for impactful change.</p>
+        <img src="mission.webp" alt="Mission Graphic" class="text-image">
+      </div>
+    </div>
+  </section>
+  <section class="recyclabase-section">
+    <div class="media-container">
+      <div class="background-image"></div>
+      <div class="content">
+        <h2>About RecyclaBase</h2>
+        <p>RecyclaBase is designed to help communities track, manage, and reduce waste. Collaborating with local government units (LGUs), non-governmental organizations (NGOs), and coastal communities, we deliver tools for effective waste management. Join us in creating a sustainable future for all.</p>
+        <img src="wew.jpg" alt="RecyclaBase Details" class="text-image">
+      </div>
+    </div>
+  </section>
+ <fieldset>
+  </div>
+      <div class="venture-team-section">
+        <h2>Meet Our Venture Team</h2>
+        <div class="venture-team-container">
+            <div class="team-member">
+                <img src="Hondsome - Copy (2).jpg" alt="Team Member 1">
+                <h3>Marco Zamora</h3>
+                <p>Chief executive Officer</p>
+            </div>
+            <div class="team-member">
+                <img src="kina.jpg" alt="Team Member 2">
+                <h3>Kina Dialao</h3>
+                <p>Chief Marketing Officer</p>
+            </div>
+            <div class="team-member">
+                <img src="bohol.jpg" alt="Team Member 3">
+                <h3>Jambaline Bohol</h3>
+                <p>Chief Operating Officer</p>
+            </div>
+            <div class="team-member">
+              
+                <img src="gwapo.jpg" alt="Team Member 4">
+                <h3>Archie  Lumangtad</h3>
+                <p>Chief Technology Officer</p>
+            </div>
+        </div>
+        <video class="background-video" autoplay loop muted>
+          <source src="plasticvideo.mp4" type="video/mp4">
+          
+        </video>
+    </div>
+    <footer>
+      <div class="footer-container">
+        <ul class="social-links">
+          <li>
+            <a href="https://www.facebook.com/profile.php?id=61569039540568" class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+              <span>Facebook</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-icon">
+              <i class="fab fa-instagram"></i>
+              <span>Instagram</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-icon">
+              <i class="fab fa-twitter"></i>
+              <span>Twitter</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-icon">
+              <i class="fab fa-github"></i>
+              <span>GitHub</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-icon">
+              <i class="fab fa-youtube"></i>
+              <span>YouTube</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+        
+
+      
+
+    <script >
+      function toggleMenu() {
+        const nav = document.querySelector('header nav');
+        nav.classList.toggle('active');
+      }
+    </script>
+    </fieldset>
+</body>
+</html>
